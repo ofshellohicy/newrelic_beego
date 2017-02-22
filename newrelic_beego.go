@@ -65,11 +65,16 @@ func init() {
 		beego.Warn(err.Error())
 		return
 	}
+	osModeSwitch := os.Getenv("STAR_CITY_PRODUCTION")
 	NewrelicAgent = app
-	beego.InsertFilter("*", beego.BeforeRouter, StartTransaction, false)
-	beego.InsertFilter("*", beego.BeforeExec, NameTransaction, false)
-	beego.InsertFilter("*", beego.FinishRouter, EndTransaction, false)
-	beego.Info("NewRelic agent start")
+	if osModeSwitch != "" {
+		beego.InsertFilter("*", beego.BeforeRouter, StartTransaction, false)
+		beego.InsertFilter("*", beego.BeforeExec, NameTransaction, false)
+		beego.InsertFilter("*", beego.FinishRouter, EndTransaction, false)
+		beego.Info("NewRelic agent start")
+	} else {
+		beego.Info("Since the STAR_CITY_PRODUCTION env var is not set, do not start newrelic agent.")
+	}
 }
 
 func generatePath(pattern string) string {
