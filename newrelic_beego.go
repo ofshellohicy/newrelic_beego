@@ -7,9 +7,9 @@ import (
 
 	"os"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
 	"github.com/newrelic/go-agent"
+	"github.com/ofshellohicy/beego"
+	"github.com/ofshellohicy/beego/context"
 )
 
 var NewrelicAgent newrelic.Application
