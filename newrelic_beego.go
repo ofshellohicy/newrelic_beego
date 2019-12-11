@@ -43,9 +43,9 @@ func EndTransaction(ctx *context.Context) {
 }
 
 func init() {
-	osModeSwitch := os.Getenv("STAR_CITY_PRODUCTION")
+	osModeSwitch := os.Getenv("ENV_PRODUCTION")
 	if osModeSwitch == "" {
-		beego.Info("Since the STAR_CITY_PRODUCTION env var is not set, do not start newrelic agent.")
+		beego.Info("Since the ENV_PRODUCTION env var is not set, do not start newrelic agent.")
 		return
 	}
 
